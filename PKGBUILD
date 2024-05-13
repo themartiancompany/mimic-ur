@@ -35,11 +35,28 @@ build(){
 }
 
 package(){
- cd "mycroft_mimic3_tts-$pkgver"
- python -m installer --destdir="$pkgdir" dist/*.whl
- ln -s "/usr/bin/mimic3" "$pkgdir/usr/bin/mimic"
- ln -s "/usr/bin/mimic3-download" "$pkgdir/usr/bin/mimic-download"
- ln -s "/usr/bin/mimic3-server" "$pkgdir/usr/bin/mimic-server"
+ cd \
+   "mycroft_mimic3_tts-$pkgver"
+ python \
+   -m \
+     installer \
+       --destdir "${pkgdir}" \
+           dist/*.whl
+ mkdir \
+   -p \
+   "${pkgdir}/usr/bin"
+ ln \
+   -s \
+     "/usr/bin/mimic3" \
+     "$pkgdir/usr/bin/mimic"
+ ln \
+   -s \
+   "/usr/bin/mimic3-download" \
+   "$pkgdir/usr/bin/mimic-download"
+ ln \
+   -s \
+   "/usr/bin/mimic3-server" \
+   "$pkgdir/usr/bin/mimic-server"
 }
 
 
